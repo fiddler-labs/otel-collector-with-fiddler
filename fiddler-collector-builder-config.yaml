@@ -1,0 +1,25 @@
+dist:
+  name: otelcol-dev-fiddler
+  description: Basic OTel Collector distribution for Developers with Fiddler Receiver
+  output_path: ./otelcol-dev-fiddler
+
+exporters:
+  - gomod:
+      # NOTE: Prior to v0.86.0 use the `loggingexporter` instead of `debugexporter`.
+      go.opentelemetry.io/collector/exporter/debugexporter v0.120.0
+  - gomod:
+      go.opentelemetry.io/collector/exporter/otlphttpexporter v0.120.0
+
+receivers:
+  - gomod:
+      github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver v0.87.0
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.18.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.18.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.18.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.18.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.18.0
+
+replaces:
+  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver => github.com/samikshan-fiddler/opentelemetry-collector-contrib/receiver/fiddlerreceiver fiddler-receiver-basic-implementation

@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mimir:
+    image: grafana/mimir:latest
+    command: ["-config.file=/etc/mimir/mimir.yaml"]
+    ports:
+      - "9009:9009"
+    volumes:
+      - ./mimir.yaml:/etc/mimir/mimir.yaml
+    networks:
+      - grafanet
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - grafanet
+
+  otelcol-dev-fiddler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./otel-config.yaml:/etc/otelcol-dev-fiddler/config.yaml
+    ports:
+      - "4317:4317"  # OTLP gRPC
+      - "4318:4318"  # OTLP HTTP
+      - "8888:8888"  # Metrics
+      - "9019:9009"  # Changed host port to 9019 to avoid conflict
+    networks:
+      - grafanet
+
+networks:
+  grafanet:
+    driver: bridge

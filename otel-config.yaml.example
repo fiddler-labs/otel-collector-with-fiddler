@@ -1,0 +1,28 @@
+receivers:
+  fiddler:
+    endpoint: ""
+    token: ""
+    interval: "3600s"
+    enabled_metrics: ["traffic", "drift", "service_metrics", "performance", "statistics"]
+
+exporters:
+  debug:
+    verbosity: detailed
+
+  otlphttp:
+    endpoint: "http://mimir:9009/otlp"
+    headers:
+      "X-Scope-OrgID": "tenant-1"
+    encoding: json
+
+service:
+  pipelines:
+    metrics:
+      receivers: [fiddler]
+      exporters: [otlphttp, debug]
+
+  telemetry:
+    logs:
+      level: debug
+    metrics:
+      level: detailed
