@@ -22,4 +22,4 @@ providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.18.0
 
 replaces:
-  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver => github.com/samikshan-fiddler/opentelemetry-collector-contrib/receiver/fiddlerreceiver fiddler-receiver-basic-implementation
+  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver => github.com/fiddler-labs/opentelemetry-collector-contrib/receiver/fiddlerreceiver fiddler-receiver-basic-implementation
