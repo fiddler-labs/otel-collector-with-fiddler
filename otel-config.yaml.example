@@ -3,7 +3,7 @@ receivers:
     endpoint: ""
     token: ""
     interval: "3600s"
-    enabled_metrics: ["traffic", "drift", "service_metrics", "performance", "statistics"]
+    enabled_metric_types: ["traffic", "drift", "service_metrics", "performance", "statistic", "data_integrity"]
 
 exporters:
   debug:

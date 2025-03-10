@@ -22,6 +22,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      no_cache: true
     volumes:
       - ./otel-config.yaml:/etc/otelcol-dev-fiddler/config.yaml
     ports:

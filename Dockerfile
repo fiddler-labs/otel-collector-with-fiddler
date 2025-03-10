@@ -13,8 +13,9 @@ WORKDIR /build
 # Copy the builder config
 COPY fiddler-collector-builder-config.yaml .
 
-# Build the collector
-RUN builder --config fiddler-collector-builder-config.yaml
+RUN go clean -modcache && \
+    go clean -cache && \
+    builder --config fiddler-collector-builder-config.yaml
 
 # Runtime stage
 FROM alpine:latest
