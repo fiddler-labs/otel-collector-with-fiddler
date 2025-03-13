@@ -1,6 +1,8 @@
-# OpenTelemetry Monitoring with Fiddler Receiver
+# Using the Fiddler Receiver
 
 A simple stack for testing the Fiddler receiver [under development] for OpenTelemetry.
+
+The source code for the Fiddler receiver is available on a fork of the upstream OpenTelemetry Collector Contrib repository under Fiddler Labs. You can check it out [here](https://github.com/fiddler-labs/opentelemetry-collector-contrib/tree/fiddler-receiver-basic-implementation/receiver/fiddlerreceiver)
 
 ## Quick Setup
 
@@ -16,7 +18,7 @@ A simple stack for testing the Fiddler receiver [under development] for OpenTele
        endpoint: "your-fiddler-endpoint"
        token: "your-api-token"
        interval: "300s"  # Set to 5 minutes for testing (default is 3600s/1 hour)
-       enabled_metrics: ["traffic", "drift", "service_metrics", "performance", "statistics"]
+       enabled_metric_types: ["traffic", "drift", "service_metrics", "performance", "statistic", "data_integrity"]
    ```
 
 3. Start the stack:
@@ -37,6 +39,23 @@ Key components:
 - **Pipelines**: Connect receivers to exporters and define the data flow
 
 Our setup uses a custom-built collector with a specialized Fiddler receiver to collect AI model monitoring metrics.
+
+## Custom Collector Configuration
+
+The `fiddler-collector-builder-config.yaml` file defines how to build our custom OpenTelemetry Collector:
+
+```yaml
+receivers:
+  - gomod:
+      github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver v0.87.0
+
+replaces:
+  - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fiddlerreceiver => github.com/fiddler-labs/opentelemetry-collector-contrib/receiver/fiddlerreceiver fiddler-receiver-basic-implementation
+```
+
+The **replaces** section redirects the build process to use Fiddler's implementation of the receiver rather than the upstream OpenTelemetry Collector where the Fiddler receiver implementation is not yet merged.
+
+This approach allows us to use the standard OpenTelemetry Collector builder while incorporating Fiddler's custom receiver component.
 
 ## Viewing Data in Grafana
 
