@@ -72,5 +72,8 @@ This approach allows us to use the standard OpenTelemetry Collector builder whil
    - Click "+" → "Dashboard"
    - Click "Add visualization"
    - Select the Mimir data source
-   - Use Prometheus Query Language (PromQL) to query your Fiddler metrics
-   - Example query: `fiddler_traffic_total` or `fiddler_drift_percentage`
+   - Setup dahsboards as you wish with the following example queries:
+     - `{metric_type="data_integrity", model="$model", project="$project"}[1d]`
+     - `{metric_type="drift", model="$model", project="$project"}[1d]`
+     - `{metric_type="service_metrics", model="$model", project="$project"}[1d]`
+     - `{metric_type="performance", model="$model", project="$project"}[1d]`
