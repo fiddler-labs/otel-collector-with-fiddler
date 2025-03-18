@@ -15,8 +15,8 @@ The source code for the Fiddler receiver is available on a fork of the upstream 
    ```yaml
    receivers:
      fiddler:
-       endpoint: "your-fiddler-endpoint"
-       token: "your-api-token"
+       endpoint: "your-fiddler-endpoint"  # https://docs.fiddler.ai/client-guide/installation-and-setup#find-your-url
+       token: "your-api-token"           # https://docs.fiddler.ai/client-guide/installation-and-setup#find-your-authorization-token
        interval: "300s"  # Set to 5 minutes for testing (default is 3600s/1 hour)
        enabled_metric_types: ["traffic", "drift", "service_metrics", "performance", "statistic", "data_integrity"]
    ```
