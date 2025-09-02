@@ -39,6 +39,10 @@ server:
   http_listen_port: 9009
   log_level: debug
 
+limits:
+  past_grace_period: 120h
+  out_of_order_time_window: 120h
+
 store_gateway:
   sharding_ring:
     replication_factor: 1

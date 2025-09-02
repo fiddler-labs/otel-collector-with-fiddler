@@ -4,6 +4,7 @@ receivers:
     token: ""
     interval: "3600s"
     enabled_metric_types: ["traffic", "drift", "service_metrics", "performance", "statistic", "data_integrity"]
+    offset: "24h"
 
 exporters:
   debug:

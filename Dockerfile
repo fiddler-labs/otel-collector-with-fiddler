@@ -5,7 +5,7 @@ FROM golang:1.23-alpine AS builder
 RUN apk add --no-cache git
 
 # Install the OpenTelemetry Collector Builder
-RUN go install go.opentelemetry.io/collector/cmd/builder@v0.120.0
+RUN go install go.opentelemetry.io/collector/cmd/builder@v0.132.0
 
 # Set working directory
 WORKDIR /build
